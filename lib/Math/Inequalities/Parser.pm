@@ -6,7 +6,7 @@ use Exporter qw/ import /;
 
 our @EXPORT = qw/ parse_inequality /;
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 sub parse_inequality {
     my ($string) = @_;
@@ -29,7 +29,7 @@ sub parse_inequality {
     elsif ($string =~ /^\s*(\d+)\s*$/ ) {
         return ($1, $1);
     }
-    elsif (length $string) {
+    elsif (length $string && $string !~ /^\s+$/) {
         croak "Cannot parse '$string' as an inequality.";
     }
     return (undef, undef);
